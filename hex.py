@@ -4,20 +4,19 @@
 # Created in Jan 2022
 # Program converts input to hex
 
-
 import random
 
 
 def hex_converter(string):
-    # Matches each letter of the inputted string and returns
-    # The hex equivalent
+    # matches each letter of the inputted string and returns
+    # the hex equivalent
 
     list_of_characters = []
     dictionary = {}
 
     dictionary[" "] = "0x20"
     dictionary["!"] = "0x21"
-    # Can't Add 22 since it is a Quotation Mark (")
+    # can't add 22 since it is a quotation mark (")
     dictionary["#"] = "0x23"
     dictionary["$"] = "0x24"
     dictionary["%"] = "0x25"
@@ -75,7 +74,7 @@ def hex_converter(string):
     dictionary["Y"] = "0x59"
     dictionary["Z"] = "0x5a"
     dictionary["["] = "0x5b"
-    # Can't Add in 5c since it is a Backslash (\)
+    # can't add in 5c since it is a backslash (\)
     dictionary["]"] = "0x5d"
     dictionary["^"] = "0x5e"
     dictionary["_"] = "0x5f"
@@ -119,7 +118,7 @@ def hex_converter(string):
 
 
 def main():
-    # Takes user input, passes it to functions and calls them
+    # takes user input, passes it to functions and calls them
 
     str = input("Enter a string to be converted into a hex: ")
     converted_str = hex_converter(str)
