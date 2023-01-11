@@ -4,126 +4,133 @@
 # Created in Jan 2022
 # Program converts input to hex
 
-import random
 
+def convert_string_to_hex(string):
+    # converts a string to hex values
 
-def hex_converter(string):
-    # matches each letter of the inputted string and returns
-    # the hex equivalent
+    # dictionary for hex values of characters
+    dictionary = {
+        " ": "0x20",
+        "!": "0x21",
+        # can't add in 22 since it is a quotation mark (")
+        "#": "0x23",
+        "$": "0x24",
+        "%": "0x25",
+        "&": "0x26",
+        "'": "0x27",
+        "(": "0x28",
+        ")": "0x29",
+        "*": "0x2a",
+        "+": "0x2b",
+        ",": "0x2c",
+        "-": "0x2d",
+        ".": "0x2e",
+        "/": "0x2f",
+        "0": "0x30",
+        "1": "0x31",
+        "2": "0x32",
+        "3": "0x33",
+        "4": "0x34",
+        "5": "0x35",
+        "6": "0x36",
+        "7": "0x37",
+        "8": "0x38",
+        "9": "0x39",
+        ":": "0x3a",
+        ";": "0x3b",
+        "<": "0x3c",
+        "=": "0x3d",
+        ">": "0x3e",
+        "?": "0x3f",
+        "@": "0x40",
+        "A": "0x41",
+        "B": "0x42",
+        "C": "0x43",
+        "D": "0x44",
+        "E": "0x45",
+        "F": "0x46",
+        "G": "0x47",
+        "H": "0x48",
+        "I": "0x49",
+        "J": "0x4a",
+        "K": "0x4b",
+        "L": "0x4c",
+        "M": "0x4d",
+        "N": "0x4e",
+        "O": "0x4f",
+        "P": "0x50",
+        "Q": "0x51",
+        "R": "0x52",
+        "S": "0x53",
+        "T": "0x54",
+        "U": "0x55",
+        "V": "0x56",
+        "W": "0x57",
+        "X": "0x58",
+        "Y": "0x59",
+        "Z": "0x5a",
+        "[": "0x5b",
+        # can't add in 5c since it is a backslash (\)
+        "]": "0x5d",
+        "^": "0x5e",
+        "_": "0x5f",
+        "`": "0x60",
+        "a": "0x61",
+        "b": "0x62",
+        "c": "0x63",
+        "d": "0x64",
+        "e": "0x65",
+        "f": "0x66",
+        "g": "0x67",
+        "h": "0x68",
+        "i": "0x69",
+        "j": "0x6a",
+        "k": "0x6b",
+        "l": "0x6c",
+        "m": "0x6d",
+        "n": "0x6e",
+        "o": "0x6f",
+        "p": "0x70",
+        "q": "0x71",
+        "r": "0x72",
+        "s": "0x73",
+        "t": "0x74",
+        "u": "0x75",
+        "v": "0x76",
+        "w": "0x77",
+        "x": "0x78",
+        "y": "0x79",
+        "z": "0x7a",
+        "{": "0x7b",
+        "|": "0x7c",
+        "}": "0x7d",
+        "~": "0x7e",
+    }
 
-    list_of_characters = []
-    dictionary = {}
+    counter_check = 0
+    formatted_text = "["
+    for character in string:
+        if character in dictionary.keys() and not counter_check == len(string) - 1:
+            formatted_text += "'" + dictionary[character] + "', "
+        elif character in dictionary.keys() and counter_check == len(string) - 1:
+            formatted_text += "'" + dictionary[character] + "']"
+        elif not counter_check == len(string) - 1:
+            formatted_text += "'That is not a valid input.', "
+        else:
+            formatted_text += "'That is not a valid input.']"
+        counter_check += 1
 
-    dictionary[" "] = "0x20"
-    dictionary["!"] = "0x21"
-    # can't add 22 since it is a quotation mark (")
-    dictionary["#"] = "0x23"
-    dictionary["$"] = "0x24"
-    dictionary["%"] = "0x25"
-    dictionary["&"] = "0x26"
-    dictionary["'"] = "0x27"
-    dictionary["("] = "0x28"
-    dictionary[")"] = "0x29"
-    dictionary["*"] = "0x2a"
-    dictionary["+"] = "0x2b"
-    dictionary[","] = "0x2c"
-    dictionary["-"] = "0x2d"
-    dictionary["."] = "0x2e"
-    dictionary["/"] = "0x2f"
-    dictionary["0"] = "0x30"
-    dictionary["1"] = "0x31"
-    dictionary["2"] = "0x32"
-    dictionary["3"] = "0x33"
-    dictionary["4"] = "0x34"
-    dictionary["5"] = "0x35"
-    dictionary["6"] = "0x36"
-    dictionary["7"] = "0x37"
-    dictionary["8"] = "0x38"
-    dictionary["9"] = "0x39"
-    dictionary[":"] = "0x3a"
-    dictionary[";"] = "0x3b"
-    dictionary["<"] = "0x3c"
-    dictionary["="] = "0x3d"
-    dictionary[">"] = "0x3e"
-    dictionary["?"] = "0x3f"
-    dictionary["@"] = "0x40"
-    dictionary["A"] = "0x41"
-    dictionary["B"] = "0x42"
-    dictionary["C"] = "0x43"
-    dictionary["D"] = "0x44"
-    dictionary["E"] = "0x45"
-    dictionary["F"] = "0x46"
-    dictionary["G"] = "0x47"
-    dictionary["H"] = "0x48"
-    dictionary["I"] = "0x49"
-    dictionary["J"] = "0x4a"
-    dictionary["K"] = "0x4b"
-    dictionary["L"] = "0x4c"
-    dictionary["M"] = "0x4d"
-    dictionary["N"] = "0x4e"
-    dictionary["O"] = "0x4f"
-    dictionary["P"] = "0x50"
-    dictionary["Q"] = "0x51"
-    dictionary["R"] = "0x52"
-    dictionary["S"] = "0x53"
-    dictionary["T"] = "0x54"
-    dictionary["U"] = "0x55"
-    dictionary["V"] = "0x56"
-    dictionary["W"] = "0x57"
-    dictionary["X"] = "0x58"
-    dictionary["Y"] = "0x59"
-    dictionary["Z"] = "0x5a"
-    dictionary["["] = "0x5b"
-    # can't add in 5c since it is a backslash (\)
-    dictionary["]"] = "0x5d"
-    dictionary["^"] = "0x5e"
-    dictionary["_"] = "0x5f"
-    dictionary["`"] = "0x60"
-    dictionary["a"] = "0x61"
-    dictionary["b"] = "0x62"
-    dictionary["c"] = "0x63"
-    dictionary["d"] = "0x64"
-    dictionary["e"] = "0x65"
-    dictionary["f"] = "0x66"
-    dictionary["g"] = "0x67"
-    dictionary["h"] = "0x68"
-    dictionary["i"] = "0x69"
-    dictionary["j"] = "0x6a"
-    dictionary["k"] = "0x6b"
-    dictionary["l"] = "0x6c"
-    dictionary["m"] = "0x6d"
-    dictionary["n"] = "0x6e"
-    dictionary["o"] = "0x6f"
-    dictionary["p"] = "0x70"
-    dictionary["q"] = "0x71"
-    dictionary["r"] = "0x72"
-    dictionary["s"] = "0x73"
-    dictionary["t"] = "0x74"
-    dictionary["u"] = "0x75"
-    dictionary["v"] = "0x76"
-    dictionary["w"] = "0x77"
-    dictionary["x"] = "0x78"
-    dictionary["y"] = "0x79"
-    dictionary["z"] = "0x7a"
-    dictionary["{"] = "0x7b"
-    dictionary["|"] = "0x7c"
-    dictionary["}"] = "0x7d"
-    dictionary["~"] = "0x7e"
-
-    for single_element in string:
-        if single_element in dictionary.keys():
-            list_of_characters.append(dictionary[single_element])
-
-    return list_of_characters
+    return formatted_text
 
 
 def main():
-    # takes user input, passes it to functions and calls them
+    # Gets the string and prints the full hex value
 
-    str = input("Enter a string to be converted into a hex: ")
-    converted_str = hex_converter(str)
+    string_text = input("Enter a string you want to convert into hex: ")
+    result_text = convert_string_to_hex(string_text)
+    print("\n{0} in hex is: {1}".format(string_text, result_text))
 
-    print("'{0}' translated into hex is: {1}".format(str, converted_str))
+    print("\nDone.")
 
 
 if __name__ == "__main__":
